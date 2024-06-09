@@ -14,7 +14,8 @@ def create_database():
 def create_app():
     app = Flask(__name__, template_folder='templates', static_folder='static')
     app.config['SECRET_KEY'] = 'secret'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://kenany_user:yourpassword@localhost/kenany_store2'
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql+psycopg2://kenany_user:WtpgxUV9JRMTLyPgMy1HCaWnzbigXUhH@dpg-cpijh46ct0pc73fsc950-a/kenany_store"
+
     db.init_app(app)
     
     
