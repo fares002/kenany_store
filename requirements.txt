@@ -7,3 +7,4 @@ flask-wtf
 pymysql
 intasend-python
 psycopg2-binary
+email-validator
