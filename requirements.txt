@@ -5,3 +5,4 @@ Flask-login
 flask_bcrypt
 flask-wtf
 pymysql
+intasend-python 
