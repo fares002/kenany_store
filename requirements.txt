@@ -4,4 +4,4 @@ Flask-Sqlalchemy
 Flask-login
 flask_bcrypt
 flask-wtf
-pymql
+pymysql
