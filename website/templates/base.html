@@ -17,8 +17,8 @@
         <nav class="navbar navbar-expand-lg  ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{url_for('views.base')}}"><image src="../static/images/kenany_logo.png" ></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" style="border-color:white"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" ></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav me-auto mb-3 mb-lg-0">
@@ -59,7 +59,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Account
                             </a>
-                            <ul class="dropdown-menu mr-5" aria-labelledby="navbarDropdownMenuLink" >
+                            <ul class="dropdown-menu mr-5 dropdown-menu-dark " aria-labelledby="navbarDropdownMenuLink" >
                               {% if current_user.is_authenticated %}
                               {% if current_user.id == 1 %}
                                   <li><a class="dropdown-item" href="{{ url_for('auth.profile', id=current_user.id) }}">Profile <i class="fa-solid fa-user"></i></a></li>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kenany Store | {% block title %}{% endblock %}</title>
+  <title>Kenany Store | {% block title %}Home{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.icons.min.css') }}">
   <script src="https://kit.fontawesome.com/03dcde4a68.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" />
@@ -21,8 +21,8 @@
         <a class="navbar-brand" href="{{url_for('views.base')}}">
           <img src="../static/images/kenany_logo.png" alt="Kenany Store Logo"> 
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler text-white " style="border-color:white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
+          <span class="navbar-toggler-icon " ></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav me-auto mb-3 mb-lg-0">
@@ -63,7 +63,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Account
               </a>
-              <ul class="dropdown-menu mr-5" aria-labelledby="navbarDropdownMenuLink">
+              <ul class="dropdown-menu mr-5 dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
                 {% if current_user.is_authenticated %}
                 {% if current_user.id == 1 %}
                 <li><a class="dropdown-item" href="{{ url_for('auth.profile', id=current_user.id) }}">Profile <i class="fa-solid fa-user"></i></a></li>
@@ -199,8 +199,7 @@
       </div>
     </section>
     
-    {% block content %}
-    {% endblock %}
+   
   </main>
 
   <!-- footer section -->

@@ -25,7 +25,8 @@ body {
 
 /* Styling for cards */
 .card {
-    border: none;
+    
+    border: solid 1px #f0f0f0;
     border-radius: 12px;
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -156,8 +157,8 @@ body {
   }
 
 
-
-/*Regiester page*/
+  
+  /*Regiester page*/
   .register-page {
  
     display: flex;
@@ -181,5 +182,6 @@ body {
     margin-bottom: 20px;
   }
   .register-container h2 {
-    margin-bottom: 20px;
-  }
+    margin-bottom: 20px;  
+}
+

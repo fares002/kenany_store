@@ -59,7 +59,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Account
                             </a>
-                            <ul class="dropdown-menu mr-5" aria-labelledby="navbarDropdownMenuLink" >
+                            <ul class="dropdown-menu mr-5 dropdown-menu-dark " aria-labelledby="navbarDropdownMenuLink" >
                               {% if current_user.is_authenticated %}
                               {% if current_user.id == 1 %}
                                   <li><a class="dropdown-item" href="{{ url_for('auth.profile', id=current_user.id) }}">Profile <i class="fa-solid fa-user"></i></a></li>

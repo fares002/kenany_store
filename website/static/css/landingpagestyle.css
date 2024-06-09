@@ -3,7 +3,7 @@ body {
     color: #ffffff;
   }
   header {
-    background-image: url('../static/images/header-bg.jpg'); /* Placeholder image path */
+    
     background-size: cover;
     background-position: right;
     height: 100vh;
