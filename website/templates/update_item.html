@@ -10,8 +10,10 @@
                     <th scope="col">Previous Price</th>
                     <th scope="col">Current Price</th>
                     <th scope="col">In Stock</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Picture</th>
                     <th scope="col">Flash Sale</th>
+                    <th scope="col">Featured product</th>
                     <th scope="col">Add</th>
         
                 </tr>
@@ -25,8 +27,10 @@
                         <td>{{ form.current_price(class="form-control") }}</td>
                         <td>{{ form.previous_price(class="form-control") }}</td>
                         <td>{{ form.in_stock(class="form-control") }}</td>
+                        <td>{{ form.description(class="form-control")}}</td>
                         <td>{{ form.product_picture() }}</td>
                         <td>{{ form.flash_sale}}</td>
+                        <td>{{ form.featured_product}}</td>
                         <td>{{ form.update_product(class="btn btn-primary") }}</td>
                     </form>
                 </tr>

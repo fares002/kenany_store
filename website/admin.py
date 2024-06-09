@@ -27,6 +27,8 @@ def add_shop_items():
             previous_price = form.previous_price.data
             in_stock = form.in_stock.data
             flash_sale = form.flash_sale.data
+            featured_product = form.featured_product.data
+            description = form.description.data
 
             file = form.product_picture.data
 
@@ -42,6 +44,8 @@ def add_shop_items():
             new_shop_item.previous_price = previous_price
             new_shop_item.in_stock = in_stock
             new_shop_item.flash_sale = flash_sale
+            new_shop_item.featured_product = featured_product
+            new_shop_item.description = description
 
             new_shop_item.image = file_path
 
@@ -82,14 +86,18 @@ def update_shop_item(id):
         form.current_price.render_kw = {'value': item_to_update.current_price}
         form.previous_price.render_kw = {'value': item_to_update.previous_price}
         form.in_stock.render_kw = {'value': item_to_update.in_stock}
+        form.description.render_kw = {'value': item_to_update.description}
         form.flash_sale.render_kw = {'checked': item_to_update.flash_sale}
+        form.featured_product.render_kw = {'checked': item_to_update.featured_product}
         
         if form.validate_on_submit():
             product_name = form.product_name.data
             current_price = form.current_price.data
             previous_price = form.previous_price.data
             in_stock = form.in_stock.data
+            description = form.description.data
             flash_sale = form.flash_sale.data
+            featured_product = form.featured_product.data
             
             file = form.product_picture.data
             file_name = secure_filename(file.filename)
@@ -102,7 +110,9 @@ def update_shop_item(id):
                                                             current_price=current_price,
                                                             previous_price=previous_price,
                                                             in_stock=in_stock,
+                                                            description=description,
                                                             flash_sale=flash_sale,
+                                                            featured_product=featured_product,
                                                             image=file_path
                                                         ))
                 

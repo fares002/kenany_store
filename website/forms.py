@@ -1,13 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, FloatField ,PasswordField, SubmitField, BooleanField, EmailField, SelectField
+from wtforms import StringField, IntegerField, FloatField ,PasswordField, SubmitField, BooleanField, EmailField, SelectField, FileField
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError, NumberRange
-from flask_wtf.file import FileField
+from flask_wtf.file import FileField 
 
 class SignUpForm(FlaskForm):
     username = StringField(label='Username', validators=[Length(min=2, max=30), DataRequired()])
     email = EmailField(label='Email', validators=[Email(), DataRequired()])
     password = PasswordField(label='Password', validators=[Length(min=6), DataRequired()])
     confirm_password = PasswordField(label='Confirm Password', validators=[EqualTo('password'), DataRequired()])
+    phone_number = StringField(label='Phone Number', validators=[DataRequired(),Length(min=10, max=15, message='Phone number must be between 10 and 15 characters')])
+    address = StringField(label='Address', validators=[DataRequired()])
     submit = SubmitField(label='Sign Up')
 
     
@@ -29,10 +31,12 @@ class PasswordChangeForm(FlaskForm):
 class ShopItemsForm(FlaskForm):
     product_name = StringField('Name of Product', validators=[DataRequired()])
     current_price = FloatField('Current Price', validators=[DataRequired()])
-    previous_price = FloatField('Previous Price', validators=[DataRequired()])
+    previous_price = FloatField('Previous Price')
     in_stock = IntegerField('In Stock', validators=[DataRequired(), NumberRange(min=0)])
     product_picture = FileField('Product Picture', validators=[DataRequired()])
+    description = StringField('Description')
     flash_sale = BooleanField('Flash Sale')
+    featured_product = BooleanField('Featured Product')
 
     add_product = SubmitField('Add Product')
     update_product = SubmitField('Update')

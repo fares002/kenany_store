@@ -19,6 +19,8 @@
             <th scope="col">In Stock</th>
             <th scope="col">Product Picture</th>
             <th scope="col">Flash Sale</th>
+            <th scope="col">Featured product</th>
+            <th scope="col">Description</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -33,6 +35,10 @@
             <td>{{ item.in_stock }}</td>
             <td><img src="{{item.image}}" alt="Product Picture" style="width: 50px; height: 50px; border-radius: 2px;"></td>
             <td>{{ item.flash_sale }}</td>
+            <td>{{ item.featured_product }}</td>
+            <td>{{ item.description }}</td>
+
+
             <td>
                 <a href="/update_item/{{item.id}}" class="btn btn-primary">Update</a>
                 <a href="/delete_item/{{item.id}}" class="btn btn-danger">Delete</a>

@@ -21,7 +21,8 @@ def home():
 @views.route('/')
 def base():
     items = Product.query.filter_by(flash_sale=True).all()
-    return render_template('landing_page.html', items=items, cart=Cart.query.filter_by(customer_id=current_user.id).all()
+    featured_items = Product.query.filter_by(featured_product=True).all()
+    return render_template('landing_page.html', items=items,featured_items=featured_items ,cart=Cart.query.filter_by(customer_id=current_user.id).all()
                            if current_user.is_authenticated else [])
 
 

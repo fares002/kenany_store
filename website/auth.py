@@ -15,6 +15,8 @@ def signup():
     if form.validate_on_submit():
         email = form.email.data
         username = form.username.data
+        phone_number = form.phone_number.data
+        address = form.address.data
         password = form.password.data
         confirm_password = form.confirm_password.data
         
@@ -22,6 +24,8 @@ def signup():
             new_customer = Customer()
             new_customer.email = email
             new_customer.username = username
+            new_customer.phone_number = phone_number
+            new_customer.address = address
             new_customer.password = confirm_password
             
             try:

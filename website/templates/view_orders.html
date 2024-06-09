@@ -14,6 +14,9 @@
                 <th scope="col">Date Ordered</th>
                 <th scope="col">Status</th>
                 <th scope="col">Product picture</th>
+                <th scope="col">customer name</th>
+                <th scope="col">customer phone_number</th>
+                <th scope="col">customer_address</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -27,6 +30,9 @@
                 <td>{{ order.created_at }}</td>
                 <td>{{ order.status }}</td>
                 <td><img src="{{order.product.image}}" alt="Product Picture" style="width: 50px; height: 50px; border-radius: 2px;"></td>
+                <td>{{ order.customer.username }}</td>
+                <td>{{ order.customer.phone_number }}</td>
+                <td>{{ order.customer.address }}</td>
                 <td>
                     <a href="/update_order/{{order.id}}" class="btn btn-primary">Update</a>
                     

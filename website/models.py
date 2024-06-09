@@ -19,10 +19,13 @@ class Customer(Base, UserMixin):
     password_hash = db.Column(db.String(150), nullable=False)
     first_name = db.Column(db.String(150), nullable=True)
     last_name = db.Column(db.String(150), nullable=True)
+    phone_number = db.Column(db.String(15), nullable=False) 
+    address = db.Column(db.String(150), nullable=False)
     profile_pic = db.Column(db.String(150), default='default.jpg', nullable=True)
     date_joined = db.Column(db.DateTime, default=datetime.utcnow)
     cart_items = db.relationship('Cart', backref='customer', lazy=True)
     orders = db.relationship('Order', backref='customer', lazy=True)
+    reviews = db.relationship('Review', back_populates='customer', lazy=True)
     
     @property
     def password(self):
@@ -42,13 +45,15 @@ class Product(Base):
     __tablename__ = 'products'
     product_name = db.Column(db.String(150), unique=True, nullable=False, index=True)
     current_price = db.Column(db.Float, nullable=False)
-    previous_price = db.Column(db.Float, nullable=False)
-    description = db.Column(db.String(150), nullable=True)
+    previous_price = db.Column(db.Float, nullable=True)
+    description = db.Column(db.String(1000), nullable=True)
     in_stock = db.Column(db.Integer, default=1)
     image = db.Column(db.String(1000), nullable=True)
     flash_sale = db.Column(db.Boolean, default=False)
+    featured_product = db.Column(db.Boolean, default=False)
     cart_items = db.relationship('Cart', backref='product', lazy=True)
     orders = db.relationship('Order', backref='product', lazy=True)
+    reviews = db.relationship('Review', back_populates='product', lazy=True)
     
     def __str__(self):
         return f'<Product {self.product_name}>'
@@ -75,6 +80,23 @@ class Order(Base):
     def __str__(self):
         return f'<Order {self.id}>'
 
+
+
+
+class Review(Base):
+    __tablename__ = 'reviews'
+    rating = db.Column(db.Integer, nullable=False)  # Assuming rating is an integer
+    comment = db.Column(db.Text, nullable=True)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
+    
+    customer = db.relationship('Customer', back_populates='reviews')
+    product = db.relationship('Product', back_populates='reviews')
+
+    
+
+    def __str__(self):
+        return f'<Review {self.id} for Product {self.product_id}>'
 
 
     
