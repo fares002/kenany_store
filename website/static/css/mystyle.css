@@ -185,3 +185,8 @@ body {
     margin-bottom: 20px;  
 }
 
+
+
+.navbar-toggler-icon{
+    filter: invert(1);
+}
