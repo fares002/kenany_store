@@ -115,27 +115,29 @@
                             <div class="row g-4">
                                 {% for item in featured_items %}
                                 <div class="col-md-3">
-                                    <div class="card h-100 border-0 shadow-sm">
-                                        <img src="{{item.image}}" alt="{{item.product_name}}" class="card-img-top p-3" style="height: 202px; width: auto;">
-                                        <div class="card-body">
-                                            <h6 class="card-title text-muted">{{item.product_name}}</h6>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                {%if item.previous_price%}
-                                                <div>
-                                                    <h5 class="mb-0">SDG {{item.current_price}}</h5>
-                                                    <strike class="text-muted">SDG {{item.previous_price}}</strike>
-                                                </div>
-                                                {%else%}
-                                                <div>
-                                                    <h5 class="mb-0">SDG {{item.current_price}}</h5>
-                                                </div>
-                                                {%endif%}
-                                                <a href="/add_to_cart/{{item.id}}" class="btn btn-secondary">Add to cart</a>
-                                            </div>
-                                            <p class="text-muted mt-2">{{item.in_stock}} Items Left</p>
-                                        </div>
+                                  <a href="/products/{{ item.id }}" class="card-link">
+                                      <div class="card h-100 border-0 shadow-sm">
+                                          <img src="{{item.image}}" alt="{{item.product_name}}" class="card-img-top p-3 mx-auto" style="height: 202px; width: auto;">
+                                          <div class="card-body">
+                                              <h6 class="card-title text-muted">{{item.product_name}}</h6>
+                                              <div class="d-flex justify-content-between align-items-center">
+                                                  {%if item.previous_price%}
+                                                  <div>
+                                                      <h5 class="mb-0">SDG {{item.current_price}}</h5>
+                                                      <strike class="text-muted">SDG {{item.previous_price}}</strike>
+                                                  </div>
+                                                  {%else%}
+                                                  <div>
+                                                      <h5 class="mb-0">SDG {{item.current_price}}</h5>
+                                                  </div>
+                                                  {%endif%}
+                                                  <a href="/add_to_cart/{{item.id}}" class="btn btn-secondary">Add to cart</a>
+                                              </div>
+                                              <p class="text-muted mt-2">{{item.in_stock}} Items Left</p>
+                                          </div>
+                                      </div>
+                                      </a>
                                     </div>
-                                </div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -169,8 +171,9 @@
                 <div class="row g-4">
                     {% for item in items %}
                     <div class="col-md-3">
+                      <a href="/products/{{ item.id }}" class="card-link">
                         <div class="card h-100 border-0 shadow-sm">
-                            <img src="{{item.image}}" alt="{{item.product_name}}" class="card-img-top p-3" style="height: 202px; width: auto;">
+                            <img src="{{item.image}}" alt="{{item.product_name}}" class="card-img-top p-3 mx-auto" style="height: 202px; width: auto;">
                             <div class="card-body">
                                 <h6 class="card-title text-muted">{{item.product_name}}</h6>
                                 <div class="d-flex justify-content-between align-items-center">
@@ -189,6 +192,7 @@
                                 <p class="text-muted mt-2">{{item.in_stock}} Items Left</p>
                             </div>
                         </div>
+                        </a>
                     </div>
                     {% endfor %}
                 </div>

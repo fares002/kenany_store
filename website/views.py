@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
+from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify, send_from_directory
 from .forms import SignUpForm
 from .models import Product, Cart, Order
 from . import db
@@ -9,6 +9,13 @@ views = Blueprint('views', __name__)
 
 API_PUBLISHABLE_KEY = "ISPubKey_test_8ff503c9-81b7-4144-88df-4ce1d65a3cdb"
 API_TOKEN = "ISSecretKey_test_2d424435-3893-4eb4-ae0f-e0a7e8736288"
+
+@views.route('/media/<filename>')
+def get_media(filename):
+    return send_from_directory('../media', filename)
+
+
+
 
 @views.route('/home')
 def home():
@@ -95,20 +102,29 @@ def delete_cart_item(id):
 def pluscart():
     if request.method == 'GET':
         prod_id = request.args.get('prod_id')
-        cart_item = Cart.query.get(prod_id)
+        if not prod_id:
+            return jsonify({'error': 'Product ID not provided'}), 400
+        
+        cart_item = Cart.query.filter_by(customer_id=current_user.id, product_id=prod_id).first()
+        if not cart_item:
+            return jsonify({'error': 'Cart item not found'}), 404
+
         cart_item.quantity += 1
         db.session.commit()
+
         cart = Cart.query.filter_by(customer_id=current_user.id).all()
-        amount = 0
-        for item in cart:
-            amount += item.product.current_price * item.quantity
-            total = amount + 1000
+        amount = sum(item.product.current_price * item.quantity for item in cart)
+        total = amount + 1000  # Assuming 1000 is a fixed additional charge
+
         data = {
             'quantity': cart_item.quantity,
             'amount': amount,
             'total': total
         }
         return jsonify(data)
+    else:
+        return jsonify({'error': 'Invalid request method'}), 405
+
     
     
     
@@ -118,7 +134,7 @@ def minuscart():
         prod_id = request.args.get('prod_id')
         cart_item = Cart.query.get(prod_id)
         if cart_item.quantity :
-            cart_item.quantity -= 1
+            cart_item.quantity = cart_item.quantity - 1
             db.session.commit()
             cart = Cart.query.filter_by(customer_id=current_user.id).all()
             amount = 0
@@ -233,4 +249,13 @@ def search():
         print(items)
         return render_template('search.html', items_new=items, cart=Cart.query.filter_by(customer_id=current_user.id).all()
                            if current_user.is_authenticated else [] )
-    return render_template('search.html')
+   
+
+
+
+@views.route('/products/<int:product_id>')
+def product_detail(product_id):
+    product_detail = Product.query.filter_by(id=product_id).first() 
+    print(product_detail.image)
+    return render_template('product_detail.html', product=product_detail, cart=Cart.query.filter_by(customer_id=current_user.id).all()
+                           if current_user.is_authenticated else [])

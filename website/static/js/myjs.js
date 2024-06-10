@@ -1,24 +1,29 @@
-$('.plus-cart').click(function(){
-    console.log('clicked');
+$(document).ready(function(){
+    $('.plus-cart').click(function(){
+        var id = $(this).attr("pid").toString();
+        var quantityElement = document.getElementById(`quantity${id}`);
+        $.ajax({
+            type: "GET",
+            url: "/pluscart",
+            data: {
+                prod_id: id
+            },
+            success: function(data){
+                if (data.error) {
+                    console.error(data.error);
+                } else {
+                    quantityElement.innerText = data.quantity;
+                    document.getElementById("amount_tt").innerText = data.amount;
+                    document.getElementById("totalamount").innerText = data.total;
+                }
+            },
+            error: function(error) {
+                console.error('An error occurred:', error);
+            }
+        });
+    });
+});
 
-    var id = $(this).attr("pid").toString();
-    var quantity = this.parentNode.children[2]
-    $.ajax({
-        tybe: "GET",
-        url: "/pluscart",
-        data:{
-            prod_id: id
-        },
-        success: function(data){
-            console.log(data);
-            quantity.innerText = data.quantity;
-            document.getElementById(`quantity${id}`).innerText = data.quantity;
-            document.getElementById(`amount_tt`).innerText = data.amount;
-            document.getElementById("totalamount").innerText = data.total;
-
-        }
-    })
-})
 
 $('.minus-cart').click(function(){
     console.log('clicked');
