@@ -102,6 +102,7 @@ def delete_cart_item(id):
 def pluscart():
     if request.method == 'GET':
         prod_id = request.args.get('prod_id')
+        print(prod_id)
         if not prod_id:
             return jsonify({'error': 'Product ID not provided'}), 400
         
@@ -133,7 +134,7 @@ def minuscart():
     if request.method == 'GET':
         prod_id = request.args.get('prod_id')
         cart_item = Cart.query.get(prod_id)
-        if cart_item.quantity :
+        if cart_item.quantity:
             cart_item.quantity = cart_item.quantity - 1
             db.session.commit()
             cart = Cart.query.filter_by(customer_id=current_user.id).all()
