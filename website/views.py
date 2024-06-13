@@ -6,6 +6,7 @@ from flask_login import login_required, current_user
 from intasend import APIService
 
 views = Blueprint('views', __name__)
+#views is a python file contain many routes
 
 API_PUBLISHABLE_KEY = "ISPubKey_test_8ff503c9-81b7-4144-88df-4ce1d65a3cdb"
 API_TOKEN = "ISSecretKey_test_2d424435-3893-4eb4-ae0f-e0a7e8736288"
@@ -19,6 +20,7 @@ def get_media(filename):
 
 @views.route('/home')
 def home():
+    #home page
     items = Product.query.all()
     return render_template('home.html', items=items, cart=Cart.query.filter_by(customer_id=current_user.id).all()
                            if current_user.is_authenticated else [])
