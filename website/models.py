@@ -97,9 +97,3 @@ class Review(Base):
 
     def __str__(self):
         return f'<Review {self.id} for Product {self.product_id}>'
-
-
-    
-    
-
-

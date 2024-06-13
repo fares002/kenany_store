@@ -104,6 +104,3 @@ def change_password(id):
             flash("Passwords don't match!", 'danger')
             
     return render_template('change_password.html', form=form)
-
-
-    
